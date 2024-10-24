@@ -25,8 +25,8 @@ jobs:
           fileURL="https://github.com/OodavidsinoO/BlockAdsNext/releases/download/$fileVersion/$fileName"
           wget -q $fileURL
           unzip -d ZIP $fileName
-          wget -q https://raw.githubusercontent.com/OodavidsinoO/BlockAdsNext/master/hosts
-          cp -u hosts ZIP/system/etc/
+          wget -q https://raw.githubusercontent.com/OodavidsinoO/BlockAdsNext/refs/heads/main/hosts
+          cp -f hosts ZIP/system/etc/
           rm hosts
           rm $fileName
           cd ZIP

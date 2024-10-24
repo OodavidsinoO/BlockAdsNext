@@ -7,12 +7,28 @@
 # Default Host File URL
 DEFAULT_HOST_FILE_URL="https://raw.githubusercontent.com/OodavidsinoO/BlockAdsNext/refs/heads/main/hosts"
 
+# Detect Busybox
+BUSYBOX_PATH = ""
+
+if [ -f "/data/adb/magisk/busybox" ]; then
+    BUSYBOX_PATH="/data/adb/magisk/busybox"
+elif [ -f "/data/adb/ksu/bin/busybox" ]; then
+    BUSYBOX_PATH="/data/adb/ksu/bin/busybox"
+elif [ -f "/data/adb/ap/bin/busybox" ]; then
+    BUSYBOX_PATH="/data/adb/ap/bin/busybox"
+fi
+
 update_hosts() {
     local url="$1"
-    if curl -s "$url" -o /etc/hosts; then
-        echo "Successfully Updated"
+    # Run wget with Busybox and save the output to /etc/hosts
+    if [ -n "$BUSYBOX_PATH" ]; then
+        if $BUSYBOX_PATH wget -O /etc/hosts "$url"; then
+            echo "Successfully Updated"
+        else
+            echo "Failed to update. Check the internet connection or file permissions"
+        fi
     else
-        echo "Failed to update. Please check your internet connection or try again later."
+        echo "Failed to update. No Busybox found or No permission to run Busybox"
     fi
 }
 
