@@ -11,25 +11,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Create Temp Folder
-        run: mkdir downloads
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      # - name: Create Temp Folder
+      #   run: mkdir downloads
 
       - name: Start Building
         run: |
-          cd downloads
+          cd src
+          # ==========================
           # Get latest version of BlockAdsNext
           fileVersion=$(curl -s "https://api.github.com/repos/OodavidsinoO/BlockAdsNext/tags" | jq -r '.[0].name')
           echo $fileVersion
           fileName="BlockAdsNext-$fileVersion.zip"
           echo $fileName
           fileURL="https://github.com/OodavidsinoO/BlockAdsNext/releases/download/$fileVersion/$fileName"
-          wget -q $fileURL
-          unzip -d ZIP $fileName
-          wget -q https://raw.githubusercontent.com/OodavidsinoO/BlockAdsNext/refs/heads/main/hosts
-          cp -f hosts ZIP/system/etc/
-          rm hosts
-          rm $fileName
-          cd ZIP
+          wget -q https://raw.githubusercontent.com/OodavidsinoO/BlockAdsNext/refs/heads/main/hosts -O ./system/etc/hosts
+          # ==========================
           # Change version number
           currentVersion=$fileVersion
           # Extract the major and minor version components
@@ -41,9 +40,10 @@ jobs:
             minor=0
             major=$((major + 1))
           fi
+          # ==========================
           # Format the new version
           newVersion="v${major}.${minor}"
-          echo "id=SH_Blocker
+          echo "id=BlockADsNext
           name=BlockADsNext
           version=$newVersion
           versionCode=$(date +"%Y%m%d")
