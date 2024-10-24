@@ -14,9 +14,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      # - name: Create Temp Folder
-      #   run: mkdir downloads
-
       - name: Start Building
         run: |
           cd src
@@ -29,7 +26,7 @@ jobs:
           ls -alh
           pwd
           fileURL="https://github.com/OodavidsinoO/BlockAdsNext/releases/download/$fileVersion/$fileName"
-          curl -s -L "https://raw.githubusercontent.com/OodavidsinoO/BlockAdsNext/refs/heads/main/hosts" > ./system/etc/hosts
+          curl -s -L "https://raw.githubusercontent.com/OodavidsinoO/BlockAdsNext/refs/heads/main/hosts" > system/etc/hosts
           # ==========================
           # Change version number
           currentVersion=$fileVersion
@@ -80,6 +77,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./downloads/ZIP/temp/BlockAdsNext-${{ env.newVersion }}.zip
+          asset_path: ./src/temp/BlockAdsNext-${{ env.newVersion }}.zip
           asset_name: BlockAdsNext-${{ env.newVersion }}.zip
           asset_content_type: application/zip
