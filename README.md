@@ -15,7 +15,7 @@ BlockAdsNext is an advertisement blocking Magisk module with Auto Update feature
 # Requirements
 
 - Magisk Installed
-- Systemless Hosts Enabled
+- Build-in Systemless Hosts Removed / Disabled
 
 # Ads Blocking List
 
