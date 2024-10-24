@@ -107,7 +107,7 @@ prop_process() {
 
 # Credits
 ui_print "**************************************"
-ui_print "*    XXX BlockAdsNext By OodavidsinOO XXX    *"
+ui_print "*    XXX BlockAdsNext By OodavidsinoO XXX    *"
 ui_print "**************************************"
 ui_print " "
 
