@@ -2,8 +2,10 @@ name: BlockAds
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 8 1,15 * *"
+  workflow_run:
+    workflows: ["Build Hosts File"]
+    types:
+      - completed
 
 jobs:
   build:
@@ -15,15 +17,15 @@ jobs:
       - name: Start Building
         run: |
           cd downloads
-          # Get latest version of BlockAds
-          fileVersion=$(curl -s "https://api.github.com/repos/pantsufan/BlockAds/tags" | jq -r '.[0].name')
+          # Get latest version of BlockAdsNext
+          fileVersion=$(curl -s "https://api.github.com/repos/OodavidsinoO/BlockAdsNext/tags" | jq -r '.[0].name')
           echo $fileVersion
-          fileName="BlockAds-$fileVersion.zip"
+          fileName="BlockAdsNext-$fileVersion.zip"
           echo $fileName
-          fileURL="https://github.com/pantsufan/BlockAds/releases/download/$fileVersion/$fileName"
+          fileURL="https://github.com/OodavidsinoO/BlockAdsNext/releases/download/$fileVersion/$fileName"
           wget -q $fileURL
           unzip -d ZIP $fileName
-          wget -q https://raw.githubusercontent.com/pantsufan/BlockAds/master/hosts
+          wget -q https://raw.githubusercontent.com/OodavidsinoO/BlockAdsNext/master/hosts
           cp -u hosts ZIP/system/etc/
           rm hosts
           rm $fileName
@@ -42,14 +44,15 @@ jobs:
           # Format the new version
           newVersion="v${major}.${minor}"
           echo "id=SH_Blocker
-          name=BlockADs
+          name=BlockADsNext
           version=$newVersion
-          versionCode=7
-          author=Kninja
-          description=🔥️ Say Goodbye To Ads Forever" > module.prop
-          zip -r BlockAds-$newVersion.zip *
+          versionCode=$(date +"%Y%m%d")
+          author=OodavidsinoO
+          description=🔥️ Say Goodbye To Ads Forever ($(date +"%Y%m%d"))
+          updateJson=https://raw.githubusercontent.com/OodavidsinoO/BlockAdsNext/refs/heads/main/blockadsnext-update.json" > module.prop
+          zip -r BlockAdsNext-$newVersion.zip *
           mkdir temp
-          mv BlockAds-$newVersion.zip temp
+          mv BlockAdsNext-$newVersion.zip temp
           cd ..
           echo "Build Done"
           echo newVersion=${newVersion} >> $GITHUB_ENV
@@ -75,6 +78,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./downloads/ZIP/temp/BlockAds-${{ env.newVersion }}.zip
-          asset_name: BlockAds-${{ env.newVersion }}.zip
+          asset_path: ./downloads/ZIP/temp/BlockAdsNext-${{ env.newVersion }}.zip
+          asset_name: BlockAdsNext-${{ env.newVersion }}.zip
           asset_content_type: application/zip

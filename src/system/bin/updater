@@ -1,0 +1,30 @@
+#!/system/bin/sh
+
+# Usage: updater
+# Usage: updater <Optinal Host File URL>
+# This script updates the /etc/hosts file with the selected host file.
+
+# Default Host File URL
+DEFAULT_HOST_FILE_URL="https://raw.githubusercontent.com/OodavidsinoO/BlockAdsNext/refs/heads/main/hosts"
+
+update_hosts() {
+    local url="$1"
+    if curl -s "$url" -o /etc/hosts; then
+        echo "Successfully Updated"
+    else
+        echo "Failed to update. Please check your internet connection or try again later."
+    fi
+}
+
+# Check if the argument is provided
+if [ -z "$1" ]; then
+    echo "No Host File URL provided. Alternative Usage: $0 <Host File URL>"
+    echo "Default Host File URL is used"
+    echo "Downloading Host File from $DEFAULT_HOST_FILE_URL"
+    update_hosts "$DEFAULT_HOST_FILE_URL"
+else
+    echo "Downloading Host File from $1"
+    update_hosts "$1"
+fi
+
+exit 0
