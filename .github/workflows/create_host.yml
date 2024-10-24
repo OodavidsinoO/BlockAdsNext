@@ -20,8 +20,6 @@ jobs:
     - name: Remove old file
       run: |
           git rm hosts
-          git commit -m "Removed Host File"
-          git push origin main
     
     - name: Set up environment
       run: |

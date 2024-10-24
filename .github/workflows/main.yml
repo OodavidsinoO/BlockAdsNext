@@ -27,7 +27,7 @@ jobs:
           fileName="BlockAdsNext-$fileVersion.zip"
           echo $fileName
           fileURL="https://github.com/OodavidsinoO/BlockAdsNext/releases/download/$fileVersion/$fileName"
-          wget -q https://raw.githubusercontent.com/OodavidsinoO/BlockAdsNext/refs/heads/main/hosts -O ./system/etc/hosts
+          curl -s -L "https://raw.githubusercontent.com/OodavidsinoO/BlockAdsNext/refs/heads/main/hosts" > ./system/etc/hosts
           # ==========================
           # Change version number
           currentVersion=$fileVersion
