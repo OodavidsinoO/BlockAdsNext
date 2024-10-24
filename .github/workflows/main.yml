@@ -26,6 +26,8 @@ jobs:
           echo $fileVersion
           fileName="BlockAdsNext-$fileVersion.zip"
           echo $fileName
+          ls -alh
+          pwd
           fileURL="https://github.com/OodavidsinoO/BlockAdsNext/releases/download/$fileVersion/$fileName"
           curl -s -L "https://raw.githubusercontent.com/OodavidsinoO/BlockAdsNext/refs/heads/main/hosts" > ./system/etc/hosts
           # ==========================
