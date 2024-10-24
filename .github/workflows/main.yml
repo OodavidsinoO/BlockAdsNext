@@ -64,7 +64,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ env.newVersion }}
-          release_name: BlockAds Module
+          release_name: BlockAdsNext Module
           body: |
             # Changelog
             - Updated Hosts File
