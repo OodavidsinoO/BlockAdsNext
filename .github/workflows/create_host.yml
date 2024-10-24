@@ -43,7 +43,6 @@ jobs:
         # Combine all .txt
         cat *.txt > hosts.tmp
         rm *.txt
-        rm hosts
         # ==========================
         # Remove duplicates
         awk '!seen[$0]++' hosts.tmp > hosts_filter
