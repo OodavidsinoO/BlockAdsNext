@@ -28,11 +28,11 @@ fi
 
 if [ -n "$BUSYBOX_PATH" ]; then
     echo "[*] Busybox detected at $BUSYBOX_PATH"
-    echo "[*] Downloading $DEFAULT_HOST_FILE_URL to /etc/hosts"
-    if $BUSYBOX_PATH wget -O /etc/hosts $DEFAULT_HOST_FILE_URL; then
+    echo "[*] Downloading $DEFAULT_HOST_FILE_URL to /data/adb/modules/BlockADsNext/system/etc/hosts"
+    if $BUSYBOX_PATH wget -O /data/adb/modules/BlockADsNext/system/etc/hosts $DEFAULT_HOST_FILE_URL; then
         echo "[*] Hosts File Updated!"
     else
-        echo "[!!!] Failed to update hosts file!"
+        echo "[!!!] Failed to update hosts file! Exiting..."
     fi
 fi
 echo ""
