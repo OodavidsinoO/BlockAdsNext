@@ -68,32 +68,6 @@ jobs:
         rm hosts_filter
         echo "Done Building!"
         # ==========================
-        # Update blockadsnext-update.json file
-        # Get latest version of BlockAdsNext
-        fileVersion=$(curl -s "https://api.github.com/repos/OodavidsinoO/BlockAdsNext/tags" | jq -r '.[0].name')
-        # Change version number
-        currentVersion=$fileVersion
-        # Extract the major and minor version components
-        major=$(echo "$currentVersion" | awk -F'.' '{print substr($1,2)}')
-        minor=$(echo "$currentVersion" | awk -F'.' '{print $2}')
-        # Increment the minor version, and reset to 0 if it reaches 99
-        minor=$((minor + 1))
-        if [ "$minor" -eq 100 ]; then
-          minor=0
-          major=$((major + 1))
-        fi
-        # Format the new version
-        newVersion="v${major}.${minor}"
-        fileName="BlockAdsNext-$newVersion.zip"
-        dateStamp=$(date +"%Y%m%d")
-        > blockadsnext-update.json
-        echo "{
-          \"version\": \"$newVersion\",
-          \"versionCode\": \"$dateStamp\",
-          \"zipUrl\": \"https://github.com/OodavidsinoO/BlockAdsNext/releases/download/$newVersion/$fileName\",
-          \"changelog\": \"https://raw.githubusercontent.com/OodavidsinoO/BlockAdsNext/refs/heads/main/CHANGELOG.md\"
-        }" > blockadsnext-update.json
-        # ==========================
         # Generate changelog using git
          > CHANGELOG.md
         git log --oneline --decorate --graph -n 50 >> CHANGELOG.md
