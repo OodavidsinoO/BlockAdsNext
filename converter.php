@@ -14,8 +14,8 @@ $lists = array(
         // Anti-AD Chinese
         'AntiADChinese' => 'https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-adguard.txt',
 
-        // OISD Lite
-        'OISD' => 'https://small.oisd.nl',
+        // OISD Big
+        'OISD' => 'https://big.oisd.nl',
 
         // Adguard DNS
         'AdguardDNS' => 'https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt',
