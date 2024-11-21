@@ -20,6 +20,15 @@ $lists = array(
         // Adguard DNS
         'AdguardDNS' => 'https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt',
 
+        // AdAway official
+        'AdAwayOfficial' => 'https://adaway.org/hosts.txt',
+
+        // StevenBlack
+        'StevenBlack' => 'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts',
+
+        // Pete Lowe
+        'PeteLowe' => 'https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext',
+
 //      // Adguard CNAME
 //      'AdguardCNAME' => 'https://raw.githubusercontent.com/AdguardTeam/cname-trackers/master/combined_disguised_trackers.txt',
 //

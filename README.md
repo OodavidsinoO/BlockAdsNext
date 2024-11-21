@@ -19,12 +19,15 @@ BlockAdsNext is an advertisement blocking Magisk module with Auto Update feature
 
 # Ads Blocking List
 
-- OISD Small
+- OISD Big
 - AdguardMobileAds
 - AdguardMobileSpyware
 - AdguardChineseAds
 - AntiADChinese
 - AdguardDNS
+- AdAway official
+- StevenBlack
+- Pete Lowe
 
 # Features
 
