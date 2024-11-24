@@ -1,1 +1,1 @@
-* 7198c07 (grafted, HEAD -> main, origin/main) Added 3 new adblocking lists
+* 051c6cf (grafted, HEAD -> main, origin/main) Update hosts file
